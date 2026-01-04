@@ -186,36 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const expandedTitle = document.getElementById("expanded-title");
   const expandedBody = document.getElementById("expanded-body");
 
-  // Attach click handlers to each service card
-  document.querySelectorAll(".service-card").forEach(card => {
-    card.addEventListener("click", () => {
-      // Grab text from the card
-      const title = card.querySelector("h3")?.textContent || "Untitled";
-      const body = card.querySelector("p")?.textContent || "No content available.";
-
-      // Fill overlay placeholders
-      expandedTitle.textContent = title;
-      expandedBody.innerHTML = `<p>${body}</p>`;
-
-      // Show overlay
-      overlay.style.display = "flex";
-      document.body.style.overflow = "hidden"; // lock background scroll
-    });
-  });
-
-  // Close overlay when clicking the X
-  closeX.addEventListener("click", () => {
-    overlay.style.display = "none";
-    document.body.style.overflow = ""; // restore scroll
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("article-overlay");
-  const closeX = overlay.querySelector(".close-x");
-  const expandedTitle = document.getElementById("expanded-title");
-  const expandedBody = document.getElementById("expanded-body");
-
   document.querySelectorAll(".service-card").forEach(card => {
     card.addEventListener("click", () => {
       const key = card.dataset.article; // e.g. "webdev", "uiux"
