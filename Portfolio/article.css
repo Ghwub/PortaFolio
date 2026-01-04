@@ -24,10 +24,10 @@
   display: none; /* hidden until JS sets to flex */
   z-index: 9999;
 
-  display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 
 /* Light mode */
