@@ -15,6 +15,7 @@
 }
 
 .article-expanded {
+  display: none;
   position: fixed;
   inset: 0;
   width: 100%;
