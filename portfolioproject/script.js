@@ -163,22 +163,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let expanded = false;
 
-  if (showMoreBtn) {
-    showMoreBtn.addEventListener("click", () => {
-      if (!expanded) {
-        // Show hidden cards
-        hiddenCards.forEach(card => card.style.display = "block");
-        showMoreBtn.textContent = "Show Less";
-        expanded = true;
-      } else {
-        // Hide them again
-        hiddenCards.forEach(card => card.style.display = "none");
-        showMoreBtn.textContent = "Show More";
-        expanded = false;
-      }
-    });
+  if (hiddenCards.length === 0) {
+    // No extra cards exist → hide button completely
+    showMoreBtn.style.display = "none";
+    return;
   }
+
+  // Check if hidden cards are already visible
+  const allVisible = Array.from(hiddenCards).every(card => {
+    return window.getComputedStyle(card).display !== "none";
+  });
+
+  if (allVisible) {
+    // If they’re already visible, set button to "Show Less"
+    showMoreBtn.textContent = "Show Less";
+    expanded = true;
+  } else {
+    // Otherwise default to "Show More"
+    showMoreBtn.textContent = "Show More";
+  }
+
+  showMoreBtn.addEventListener("click", () => {
+    if (!expanded) {
+      hiddenCards.forEach(card => card.style.display = "block");
+      showMoreBtn.textContent = "Show Less";
+      expanded = true;
+    } else {
+      hiddenCards.forEach(card => card.style.display = "none");
+      showMoreBtn.textContent = "Show More";
+      expanded = false;
+    }
+  });
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("article-overlay");
